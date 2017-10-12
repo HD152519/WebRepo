@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="org.dimigo.vo.UserVO"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -52,12 +53,31 @@
 
         <div class="container">
             <div class="center">        
-                <h2>Sgin In</h2>             	
-	    <form class="form-inline my-2 my-lg-0" id="LoginForm">
-            <input class="form-control mr-sm-2" type="text" placeholder="ID" aria-label="ID" id="id" required>
-            <input class="form-control mr-sm-2" type="password" placeholder="PWD" aria-label="PWD" id="pwd" required>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
-        </form>
+                <h2>Sgin Up</h2>             	
+				<% UserVO user = (UserVO) session.getAttribute("user"); 
+    				if(user == null){
+    				%>
+					<div class="buttons" id="login">
+						<a class="text-bold text-white" style="text-decoration: none" href="/WebClass/bloglogin" method="post">Sign in</a>
+					</div>
+				</div>
+				<%}else{ %>
+				<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+	    <li class="nav-item dropdown">
+	      <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    	<%=user.getName() %>님
+	      </a>
+	      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+	      <form action="/WebClass/bloglogout" method="post">
+	      	<button type="submit" class="dropdown-item">Sign out</button>
+	      	</form>
+	       	<div class="dropdown-divider"></div>
+	        <button type="button" class="dropdown-item">Action1</button>
+	        <button type="button" class="dropdown-item">Action2</button>
+	      </div>
+	    		</li>
+	    		</ul>
+				<%} %>
             </div> 
             <div class="row contact-wrap"> 
                 <div class="col-md-8 col-md-offset-2">
@@ -141,6 +161,7 @@
 	<script src="../js/jquery.easing.1.3.js"></script>
 	<script src="../js/jquery.isotope.min.js"></script>
 	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
+    <script src="../https://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="../js/functions.js"></script>
 	<script type="text/javascript">$('.portfolio').flipLightBox()</script>
     <script src="../contactform/contactform.js"></script>
