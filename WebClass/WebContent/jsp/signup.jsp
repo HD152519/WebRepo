@@ -45,6 +45,17 @@
 		myModal.find('.modal-body').text('회원 가입 시 오류가 발생하였습니다.');
 		myModal.modal();
 	--%>
+	<%
+	if("error".equals(request.getAttribute("msg"))){
+%>
+	
+		var myModal = $('#myModal');
+		myModal.find('.modal-title').text('Sign Up Error');
+		myModal.find('.modal-body').text('회원 가입 시 오류가 발생하였습니다.');
+		myModal.modal();
+		<%
+	}
+%>
 </script>
 
 </body>
